@@ -28,9 +28,12 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
-
+import {HeaderComponent, SidebarComponent} from './shared';
+import {ProductComponent} from './masters';
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -50,11 +53,7 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    AppComponent,
-    AboutComponent,
-    HomeComponent,
-    NoContentComponent,
-    XLargeDirective
+    AppComponent
   ],
   /**
    * Import Angular's modules.
@@ -63,7 +62,9 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    NgbModule.forRoot(),
+    TranslateModule.forRoot()
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
