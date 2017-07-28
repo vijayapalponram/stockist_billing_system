@@ -1,26 +1,31 @@
-<div class="row container">
-    <div class="col-sm-6">
+<div class="row">
+    <div class="col-sm-4 push-sm-4">
         <form role="form">
-            <fieldset class="form-group">
-                <label>Product Name</label>
-                <input class="form-control"/>
-            </fieldset>
-            <fieldset class="form-group">
-                <label>MRP</label>
-                <input class="form-control"/>
-            </fieldset>
-            <fieldset class="form-group">
-                <label>Rate</label>
-                <input class="form-control"/>
-            </fieldset>
-            <fieldset class="form-group">
-                <label>Cost</label>
-                <input class="form-control"/>
-            </fieldset>
-            <fieldset class="form-group">
-                <label>Vat %</label>
-                <input class="form-control"/>
-            </fieldset>
+            <div class="form-content">
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" ng-model="productName" placeholder="Product Name"/>
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" ng-model="MRP" placeholder="MRP"/>
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" ng-model="rate" placeholder="Rate"/>
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" ng-model="cost" placeholder="Cost"/>
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" ng-model="vat" placeholder="Vat %"/>
+                </div>
+            </div>
         </form>
     </div>
 </div>
