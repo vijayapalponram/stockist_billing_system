@@ -8,17 +8,21 @@ import {
 
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
+import { Ng2TableModule } from 'ng2-table/ng2-table';
+
 
 @NgModule({
     imports: [
         CommonModule,
         NgbCarouselModule.forRoot(),
         NgbAlertModule.forRoot(),
-        ProductRoutingModule
+        ProductRoutingModule,
+        Ng2TableModule
     ],
     declarations: [
         ProductComponent
-    ]
+    ],
+
 })
 export class ProductModule { }
 
