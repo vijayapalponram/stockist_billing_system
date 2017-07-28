@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
@@ -19,21 +20,19 @@ import {
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './environment';
-import { ROUTES } from './app.routes';
+import { AppRoutingModule } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-import { HomeComponent } from './home';
-import { AboutComponent } from './about';
-import { NoContentComponent } from './no-content';
-import { XLargeDirective } from './home/x-large';
-import {HeaderComponent, SidebarComponent} from './shared';
-import {ProductComponent} from './masters';
+
+import {LayoutComponent} from './layout/layout.component';
+import { LoginComponent } from './login/login.component';
 import '../styles/styles.scss';
 import '../styles/headings.css';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -53,16 +52,17 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    AppComponent
+    AppComponent, LoginComponent
   ],
   /**
    * Import Angular's modules.
    */
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, NoopAnimationsModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    AppRoutingModule,
     NgbModule.forRoot(),
     TranslateModule.forRoot()
   ],

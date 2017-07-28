@@ -8,7 +8,10 @@ import {ILoginResult} from './login.model';
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    animations: [routerTransition()]
+    animations: [routerTransition()],
+    providers:[
+        LoginService
+    ]
 })
 export class LoginComponent implements OnInit {
     public username : string="";
@@ -24,7 +27,7 @@ export class LoginComponent implements OnInit {
         this._loginService.signIn(this.username, this.password).subscribe((loginResult)=>{
             if(loginResult.found) {
                 sessionStorage.setItem('isLoggedin', 'true');
-                this._router.navigate(['/product']);
+                this._router.navigate(['/app']);
             }
             else {
                 sessionStorage.setItem('isLoggedin', 'false');

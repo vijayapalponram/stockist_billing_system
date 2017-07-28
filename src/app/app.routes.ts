@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
@@ -6,11 +6,15 @@ import { NoContentComponent } from './no-content';
 import { DataResolver } from './app.resolver';
 import {HeaderComponent, SidebarComponent} from './shared';
 import {ProductComponent} from './masters';
+import {LoginComponent} from './login/login.component';
+import { ModuleWithProviders } from "@angular/core";
 
-export const ROUTES: Routes = [ 
-    {
-        path: '',
-        loadChildren: './layout/layout.module#LayoutModule'
-    },
-    { path: 'login', loadChildren: './login/login.module#LoginModule' },
+const routes: Routes = [
+    {path: 'app', loadChildren: './layout/layout.module#LayoutModule'},
+    { path: 'login', component: LoginComponent},
+    { path: '', redirectTo: 'login', pathMatch:'full'}
+    
 ];
+
+export const AppRoutingModule: ModuleWithProviders = RouterModule.forRoot(routes);
+

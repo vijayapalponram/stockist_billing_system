@@ -5,10 +5,8 @@ import { LayoutComponent } from './layout.component';
 const routes: Routes = [
     {
         path: '', component: LayoutComponent,
-        children: [
-            
-            { path: 'product', loadChildren: './masters/product/product.module#ProductModule' }
-            
+        children: [            
+            { path: 'product', loadChildren: './masters/product/product.module#ProductModule' }            
         ]
     }
 ];
