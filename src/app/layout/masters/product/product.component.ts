@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 
 import {TableData} from './table-data';
+import {ProductService} from './product.service';
 
 @Component({
   selector: 'product',  
@@ -13,17 +14,9 @@ export class ProductComponent implements OnInit {
 
   public rows:Array<any> = [];
   public columns:Array<any> = [
-    {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'}},
-    {
-      title: 'Position',
-      name: 'position',
-      sort: false,
-      filtering: {filterString: '', placeholder: 'Filter by position'}
-    },
-    {title: 'Office', className: ['office-header', 'text-success'], name: 'office', sort: 'asc'},
-    {title: 'Extn.', name: 'ext', sort: '', filtering: {filterString: '', placeholder: 'Filter by extn.'}},
-    {title: 'Start date', className: 'text-warning', name: 'startDate'},
-    {title: 'Salary ($)', name: 'salary'}
+    {title: 'Name', name: 'productName', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'Rate', className: ['office-header', 'text-success'], name: 'rate', sort: 'asc'},
+    {title: 'Cost.', name: 'cost'}    
   ];
   public page:number = 1;
   public itemsPerPage:number = 10;
@@ -40,12 +33,17 @@ export class ProductComponent implements OnInit {
   
   private data:Array<any> = TableData;
 
-  public constructor() {
-    this.length = this.data.length;
+  public constructor(private _productService:ProductService) {
+    
   }
 
   public ngOnInit():void {
-    this.onChangeTable(this.config);
+    this._productService.getProductList().subscribe((productList)=>{
+      this.data = productList;
+      this.length = this.data.length;
+      this.onChangeTable(this.config);
+    })
+    
   }
 
   public changePage(page:any, data:Array<any> = this.data):Array<any> {

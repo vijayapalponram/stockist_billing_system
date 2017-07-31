@@ -27,10 +27,12 @@ export class LoginComponent implements OnInit {
         this._loginService.signIn(this.username, this.password).subscribe((loginResult)=>{
             if(loginResult.found) {
                 sessionStorage.setItem('isLoggedin', 'true');
+                sessionStorage.setItem('token', loginResult.token);
                 this._router.navigate(['/app']);
             }
             else {
                 sessionStorage.setItem('isLoggedin', 'false');
+                sessionStorage.setItem('token', '');
             }
         });
         

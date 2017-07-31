@@ -9,7 +9,7 @@ import {
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { Ng2TableModule } from 'ng2-table/ng2-table';
-
+import {ProductService} from './product.service';
 
 @NgModule({
     imports: [
@@ -22,7 +22,7 @@ import { Ng2TableModule } from 'ng2-table/ng2-table';
     declarations: [
         ProductComponent
     ],
-
+    providers:[ProductService]
 })
 export class ProductModule { }
 
