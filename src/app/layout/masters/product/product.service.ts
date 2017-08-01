@@ -20,4 +20,11 @@ export class ProductService {
         return this._http.get(this.productUrl).map((res:Response)=> res.json());
     }
 
+    public saveProduct(product:IProductModel) : Observable<IProductModel[]>{
+        let token = sessionStorage.getItem('token').toString();
+        this.productUrl = this.productUrl + "?token="+ token;
+        let headers      = new Headers({ "x-access-token": token });
+        let options       = new RequestOptions({ headers: headers });
+        return this._http.post(this.productUrl, {'product':product}).map((res:Response)=> res.json());
+    }
 }

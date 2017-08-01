@@ -1,10 +1,14 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  TemplateRef
 } from '@angular/core';
 
 import {TableData} from './table-data';
 import {ProductService} from './product.service';
+import {PaginationConfig } from 'ngx-bootstrap/pagination';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {BsModalRef} from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
   selector: 'product',  
@@ -12,14 +16,21 @@ import {ProductService} from './product.service';
 })
 export class ProductComponent implements OnInit {
 
+  private data:Array<any>;
   public rows:Array<any> = [];
   public columns:Array<any> = [
-    {title: 'Name', name: 'productName', filtering: {filterString: '', placeholder: 'Filter by name'}},
-    {title: 'Rate', className: ['office-header', 'text-success'], name: 'rate', sort: 'asc'},
-    {title: 'Cost.', name: 'cost'}    
+    {title: 'Name', name: 'productName', filtering: {filterString: '', placeholder: 'Filter by product name'}},
+    {title: 'Rate', name: 'rate', sort: 'asc'},
+    {title: 'Cost', name: 'cost'},
+    {title: 'MRP', name: 'mrp'},
+    {title: 'Pack', name: 'pack'},
+    {title: 'Vat%', name: 'vat'},
+    {title: 'MFGR', name: 'mfgr'},
+    {title: 'Min.Stock', name: 'minStock'},
+    {title: 'HSN Code', name: 'hsnCode'}    
   ];
   public page:number = 1;
-  public itemsPerPage:number = 10;
+  public itemsPerPage:number = 5;
   public maxSize:number = 5;
   public numPages:number = 1;
   public length:number = 0;
@@ -30,10 +41,14 @@ export class ProductComponent implements OnInit {
     filtering: {filterString: ''},
     className: ['table-striped', 'table-bordered']
   };
-  
-  private data:Array<any> = TableData;
-
-  public constructor(private _productService:ProductService) {
+public modalConfig = {
+    animated: true,
+    keyboard: true,
+    backdrop: true,
+    ignoreBackdropClick: false
+  };
+  public modalRef:BsModalRef;
+  public constructor(private _productService:ProductService, private _paginationConfig:PaginationConfig, public _modalService:BsModalService) {
     
   }
 
@@ -45,7 +60,19 @@ export class ProductComponent implements OnInit {
     })
     
   }
-
+  public openProductModal(template:TemplateRef<any>)
+  {
+    this.modalRef = this._modalService.show(template);
+    
+    
+  }
+  public closeProductModal(){
+    //this.modalRef.hide();
+    this._modalService.hide(this._modalService.getModalsCount());
+    //this._modalService._hideModal(1);
+    //this._modalService._hideBackdrop();
+      
+  }
   public changePage(page:any, data:Array<any> = this.data):Array<any> {
     let start = (page.page - 1) * page.itemsPerPage;
     let end = page.itemsPerPage > -1 ? (start + page.itemsPerPage) : data.length;

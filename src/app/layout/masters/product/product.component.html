@@ -1,35 +1,66 @@
-<div class="row">
-    <div class="col-sm-4 push-sm-4">
-        <form role="form">
-            <div class="form-content">
-                <div class="form-group">
-                    <input type="text" class="form-control input-underline input-lg" ng-model="productName" placeholder="Product Name"/>
-                </div>
-            </div>
-            <div class="form-content">
-                <div class="form-group">
-                    <input type="text" class="form-control input-underline input-lg" ng-model="MRP" placeholder="MRP"/>
-                </div>
-            </div>
-            <div class="form-content">
-                <div class="form-group">
-                    <input type="text" class="form-control input-underline input-lg" ng-model="rate" placeholder="Rate"/>
-                </div>
-            </div>
-            <div class="form-content">
-                <div class="form-group">
-                    <input type="text" class="form-control input-underline input-lg" ng-model="cost" placeholder="Cost"/>
-                </div>
-            </div>
-            <div class="form-content">
-                <div class="form-group">
-                    <input type="text" class="form-control input-underline input-lg" ng-model="vat" placeholder="Vat %"/>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="row">
+<button type="button" clas="btn btn-primary" (click)="openProductModal(template)">Add Product</button>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">New Product</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeProductModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+        <!-- <div class="row">
+            <div class="col-lg-12 push-lg-12"> -->
+                <form role="form">
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-underline input-lg" ng-model="productName" placeholder="Product Name"/>
+                        </div>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-underline input-lg" ng-model="MRP" placeholder="MRP"/>
+                        </div>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-underline input-lg" ng-model="rate" placeholder="Rate"/>
+                        </div>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-underline input-lg" ng-model="cost" placeholder="Cost"/>
+                        </div>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-underline input-lg" ng-model="vat" placeholder="Vat %"/>
+                        </div>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-underline input-lg" ng-model="mfgr" placeholder="MFGR"/>
+                        </div>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-underline input-lg" ng-model="minStock" placeholder="Min.Stock"/>
+                        </div>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-underline input-lg" ng-model="hsnCode" placeholder="HSN Code"/>
+                        </div>
+                    </div>
+                    <div class="form-content">
+                    <button type="button" clas="btn btn-primary" (click)="saveProduct(template)">Save</button>
+                    <button type="button" clas="btn btn-primary" (click)="closeProductModal()">Cancel</button>
+                    </div>
+                </form>
+            <!-- </div>
+        </div> -->
+  </div>
+</ng-template>
+
+<!-- <div class="row">
   <div class="col-md-4">
     <input *ngIf="config.filtering" placeholder="Filter all columns"
            [ngTableFiltering]="config.filtering"
@@ -37,13 +68,13 @@
            (tableChanged)="onChangeTable(config)"/>
   </div>
 </div>
-<br>
+<br> -->
 <ng-table [config]="config"
           (tableChanged)="onChangeTable(config)"
           (cellClicked)="onCellClick($event)"
           [rows]="rows" [columns]="columns">
 </ng-table>
-<!-- <pagination *ngIf="config.paging"
+ <pagination *ngIf="config.paging"
             class="pagination-sm"
             [(ngModel)]="page"
             [totalItems]="length"
@@ -53,6 +84,6 @@
             [rotate]="false"
             (pageChanged)="onChangeTable(config, $event)"
             (numPages)="numPages = $event">
-</pagination> -->
-<pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>
+</pagination> 
+<!-- <pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre> -->
 
